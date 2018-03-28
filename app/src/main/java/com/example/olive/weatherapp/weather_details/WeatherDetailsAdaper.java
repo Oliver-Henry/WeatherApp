@@ -35,13 +35,14 @@ class WeatherDetailsAdaper extends RecyclerView.Adapter<WeatherDetailsAdaper.MyV
     @Override
     public void onBindViewHolder(WeatherDetailsAdaper.MyViewHolder holder, int position) {
         String url = "http://openweathermap.org/img/w/" + weatherModel.getList().get(position).getWeather().get(0).getIcon() + ".png";
-        Picasso.with(applicationContext).load(url).resize(300, 300).centerCrop().into(holder.imageView);
+        Picasso.with(applicationContext).load(url).resize(100, 100).centerCrop().into(holder.imageView);
 
-        holder.textView1.setText("Temperature " + String.valueOf(Math.round(weatherModel.getList().get(position).getMain().getTemp() - 273.15)) + "°");
-        holder.textView2.setText("Humidity " + String.valueOf(weatherModel.getList().get(position).getMain().getHumidity()));
-        holder.textView3.setText(weatherModel.getList().get(position).getDtTxt());
-        holder.textView4.setText(weatherModel.getList().get(position).getWeather().get(0).getDescription());
-      //  holder.textView5.setText(String.valueOf(weatherModel.getList().get(position).getMain().getTempKf()));
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(weatherModel.getList().get(position).getDtTxt()));
+//        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+
+        holder.textView1.setText(String.valueOf(Math.round(weatherModel.getList().get(position).getMain().getTemp() - 273.15)) + "°");
+        holder.textView2.setText(weatherModel.getList().get(position).getDtTxt());
 
     }
 
@@ -54,22 +55,14 @@ class WeatherDetailsAdaper extends RecyclerView.Adapter<WeatherDetailsAdaper.MyV
         private ImageView imageView;
         private TextView textView1;
         private TextView textView2;
-        private TextView textView3;
-        private TextView textView4;
-        private TextView textView5;
-        private TextView textView6;
-        private TextView textView7;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imgV);
-            textView1 = itemView.findViewById(R.id.tV1);
-            textView2 = itemView.findViewById(R.id.tV2);
-            textView3 = itemView.findViewById(R.id.tV3);
-            textView4 = itemView.findViewById(R.id.tV4);
-            textView5 = itemView.findViewById(R.id.tV5);
-            textView6 = itemView.findViewById(R.id.tV6);
-            textView7 = itemView.findViewById(R.id.tV7);
+            textView1 = itemView.findViewById(R.id.tVtemp);
+            textView2 = itemView.findViewById(R.id.tVdate);
+
         }
     }
 }
